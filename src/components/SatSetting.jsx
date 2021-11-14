@@ -5,9 +5,7 @@ class SatSettingForm extends Component {
 	showSatellite = event => {
 		event.preventDefault();
 		this.props.form.validateFields((err, values) => {
-			if (!err) {
-				console.log(values);
-			}
+			!err && this.props.onShow(values);
 		});
 	};
 
@@ -28,31 +26,36 @@ class SatSettingForm extends Component {
 			<Form {...formItemLayout} onSubmit={this.showSatellite} className='sat-setting'>
 				<Form.Item label='Longitude(degrees)'>
 					{getFieldDecorator('longitude', {
-						rules: [{ required: true, message: 'Please input your Longitude' }]
+						rules: [{ required: true, message: 'Please input your Longitude' }],
+						initialValue: 70
 					})(<InputNumber placeholder='longitude' min={-180} max={180} style={{ width: '100%' }} />)}
 				</Form.Item>
 
 				<Form.Item label='Latitude(degrees)'>
 					{getFieldDecorator('latitude', {
-						rules: [{ required: true, message: 'Please input your Latitude' }]
+						rules: [{ required: true, message: 'Please input your Latitude' }],
+						initialValue: -40
 					})(<InputNumber placeholder='latitude' min={-90} max={90} style={{ width: '100%' }} />)}
 				</Form.Item>
 
 				<Form.Item label='Elevation(meters)'>
 					{getFieldDecorator('elevation', {
-						rules: [{ required: true, message: 'Please input your Elevation' }]
+						rules: [{ required: true, message: 'Please input your Elevation' }],
+						initialValue: 100
 					})(<InputNumber placeholder='elevation' min={-413} max={8850} style={{ width: '100%' }} />)}
 				</Form.Item>
 
 				<Form.Item label='Altitude(degrees)'>
 					{getFieldDecorator('altitude', {
-						rules: [{ required: true, message: 'Please input your Altitude' }]
+						rules: [{ required: true, message: 'Please input your Altitude' }],
+						initialValue: 90
 					})(<InputNumber placeholder='altitude' min={0} max={90} style={{ width: '100%' }} />)}
 				</Form.Item>
 
 				<Form.Item label='Duration(secs)'>
 					{getFieldDecorator('duration', {
-						rules: [{ required: true, message: 'Please input your Duration' }]
+						rules: [{ required: true, message: 'Please input your Duration' }],
+						initialValue: 10
 					})(<InputNumber placeholder='duration' min={0} max={90} style={{ width: '100%' }} />)}
 				</Form.Item>
 
