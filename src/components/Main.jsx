@@ -4,6 +4,7 @@ import SatSetting from './SatSetting';
 import SatelliteList from './SatelliteList';
 import http from '../service';
 import { NEARBY_SATELLITE, SAT_API_KEY, STARLINK_CATEGORY } from '../constants';
+import WorldMap from './WorldMap';
 
 class Main extends Component {
 	state = { satInfo: null, settings: null, isLoadingList: false };
@@ -25,17 +26,21 @@ class Main extends Component {
 			.finally(() => this.setState({ isLoadingList: false }));
 	};
 
+	showMap = selected => {
+		this.setState(_ => ({ satList: [...selected] }));
+	};
+
 	render() {
-		const { satInfo, isLoadingList } = this.state;
+		const { satInfo, isLoadingList, satList, settings } = this.state;
 
 		return (
 			<Row className='main'>
 				<Col span={8} className='left-side'>
 					<SatSetting onShow={this.showNearbySatellite} />
-					<SatelliteList satInfo={satInfo} isLoad={isLoadingList} />
+					<SatelliteList satInfo={satInfo} isLoad={isLoadingList} onShowMap={this.showMap} />
 				</Col>
 				<Col span={16} className='right-side'>
-					right
+					<WorldMap satData={satList} observerData={settings} />
 				</Col>
 			</Row>
 		);

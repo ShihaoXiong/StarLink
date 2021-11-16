@@ -28,13 +28,15 @@ class SatelliteList extends Component {
 		return list;
 	};
 
+	onShowSatMap = () => this.props.onShowMap(this.state.selected);
+
 	render() {
 		const satList = this.props.satInfo?.above ?? [];
 
 		return (
 			<div className='sat-list-box'>
 				<div className='btn-container'>
-					<Button className='sat-list-btn' size='large'>
+					<Button className='sat-list-btn' size='large' type='primary' onClick={this.onShowSatMap}>
 						Track on the map
 					</Button>
 				</div>
